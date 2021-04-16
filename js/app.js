@@ -1,3 +1,13 @@
-const forms = document.getElementById("signup");
+var inputBox = document.getElementById("inputBox");
 
-console.log(forms)
+var invalidChars = [
+  "-",
+  "+",
+  "e",
+];
+
+inputBox.addEventListener("keydown", function(e) {
+  if (invalidChars.includes(e.key)) {
+    e.preventDefault();
+  }
+});

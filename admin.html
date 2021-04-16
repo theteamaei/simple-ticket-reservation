@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Blackpink</title>
+    <link rel="stylesheet" href="stylesheet/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="">
+        <h1>Admin</h1>
+    </div>
+
+    <div class="table">
+        <a href="signup.html">Create Account</a>
+        <table border="1">
+            <tr>
+                <th>Account ID</th>
+                <th>Email Address</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Age</th>
+                <th>Date of Birth</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <?php
+                require_once "php/connect.php";
+
+                $query = "select * from accounts order by account_id;";
+                $result = mysqli_query($connection, $query);
+                
+                while($data = mysqli_fetch_array($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $data['account_id'] . "</td>";
+                    echo "<td>" . $data['email_address'] . "</td>";
+                    echo "<td>" . $data['first_name'] . "</td>";
+                    echo "<td>" . $data['last_name'] . "</td>";
+                    echo "<td>" . $data['gender'] . "</td>";
+                    echo "<td>" . $data['address'] . "</td>";
+                    echo "<td>" . $data['age'] . "</td>";
+                    echo "<td>" . $data['date_of_birth'] . "</td>";
+                    echo "<td><input type='submit' value='update'></td>";
+                    echo "<td>";
+                    echo "<form action='php/deleteAccount.php' method='post'>";
+                    echo "<input type='hidden' name='account_id' value=". $data['account_id'] .">";
+                    echo "<input type='submit' value='delete'></td>";
+                    echo "</form>";
+                    echo "</tr>";
+                }
+            ?>
+        </table>
+    </div>
+    
+</body>
+</html>
