@@ -1,6 +1,8 @@
 <?php
     require_once "php/connect.php";
     require "php/addAccount.php";
+    require "php/formValidation.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -20,31 +22,31 @@
         <div class="heading-title">
             <h1>SIGN UP</h1>
         </div>
-        <form action="signup.html" method="post" id="signup">
+        <form action="signup.html" method="post" id="signup" onsubmit="return validation();">
             <!-- FIRSTNAME -->
             <div class="form-group">
                 <label for="firstname">First Name</label>
-                <input type="Text" name="firstname" id="firstname">
+                <input type="text" name="firstname" id="firstname" required>
             </div>
             <!-- LASTNAME -->
             <div class="form-group">
                 <label for="lastname">Lastname</label>
-                <input type="text" name="lastname" id="lastname">
+                <input type="text" name="lastname" id="lastname" required>
             </div>
             <!-- EMAIL -->
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
             </div>
             <!-- PASSWORD -->
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
             </div>
             <!-- CONFIRM PASSWORD -->
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" name="confirm-password" id="confirm-password">
+                <input type="password" name="confirm-password" id="confirm-password" required>
             </div>
             <!-- GENDER -->
             <div class="form-group">
@@ -56,45 +58,28 @@
             <!-- ADDRESS -->
             <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" name="address" id="address">
+                <input type="text" name="address" id="address" required>
             </div>
             <!-- AGE -->
             <div class="form-group">
                 <label for="age">Age</label>
-                <input type="number" min="18" max="99" name="age" id="age">
+                <input type="number" minlength="2" min="18" max="99" name="age" id="age" required>
             </div>
             <!-- DOB -->
             <div class="form-group">
                 <label for="dob">Date of Birth</label>
-                <input type="date" max="2003-12-31" name="dob" id="dob">
+                <input type="date" value="<?php echo date('Y-m-d'); ?>" name="dob" id="dob" required>
             </div>
             
             <div class="form-group">
-                <input type="Submit" value="Sign Up">
+                <input type="submit" value="Sign Up" id="btn">
             </div>
 
-        
+            <div id="errorMsg" style="color:red; font-size:60px;"></div>
+
         </form>
     </div>
     
-    <script>
-        const inputBox = document.getElementById("age");
-
-        var invalidChars = [
-        "-",
-        "+",
-        "e",
-         ];
-
-        inputBox.addEventListener("input", function() {
-            this.value = this.value.replace(/[e\+\-]/gi, "");
-        });
-
-        inputBox.addEventListener("keydown", function(e) {
-            if (invalidChars.includes(e.key)) {
-                e.preventDefault();
-        }
-        });
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>

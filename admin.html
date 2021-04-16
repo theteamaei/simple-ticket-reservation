@@ -32,7 +32,7 @@
             <?php
                 require_once "php/connect.php";
 
-                $query = "select * from accounts order by account_id;";
+                $query = "SELECT * FROM accounts ORDER BY account_id;";
                 $result = mysqli_query($connection, $query);
                 
                 while($data = mysqli_fetch_array($result)) {
